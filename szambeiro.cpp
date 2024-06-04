@@ -1,14 +1,18 @@
 #include "graphics.hpp"
 #include "szambeiro.h"
 #include "widget.h"
+#include <iostream>
 using namespace genv;
 using namespace std;
 
-szambeiro ::szambeiro(int size_x, int size_y, int pos_x , int pos_y, int ertek): widget(size_x, size_y, pos_x, pos_y), ertek(ertek){}
+szambeiro ::szambeiro(int size_x, int size_y, int pos_x , int pos_y): widget(size_x, size_y, pos_x, pos_y), ertek(0){}
+
 void szambeiro :: rajzol(){
+    size_x= gout.twidth(to_string(ertek))+100;
+
     gout << move_to(pos_x,pos_y) << color(255,255,255) << box(size_x,size_y)
          << color(0,0,0) << move_to(pos_x+3,pos_y+3) <<box(size_x-6,size_y-6)
-         << move_to(size_x/2+pos_x,size_y/2+pos_y) << color(255,255,255)<< text(to_string(ertek))   //doboz
+         << move_to(size_x/8+pos_x,size_y/5+pos_y) << color(255,255,255)<< text(to_string(ertek))   //doboz
          << move_to(size_x/4*3+pos_x,pos_y) << box(size_x/4,size_y/2)       //felsonyil
          << color(0,0,0)
          << move_to(size_x/4*3+pos_x+3,pos_y+3) << box(size_x/4-6,size_y/2-6)
@@ -17,7 +21,9 @@ void szambeiro :: rajzol(){
          << color(0,0,0)
          << move_to(size_x/4*3+pos_x+3,size_y/2+pos_y+3) << box(size_x/4-6,size_y/2-6); //alsonyil
          }
-
+int szambeiro :: get_int(){
+    return ertek;
+}
 
 void szambeiro :: event(genv::event ev){
     int m_x= ev.pos_x;
@@ -30,4 +36,10 @@ void szambeiro :: event(genv::event ev){
             ertek--;
         }
     }
+    if(ev.keycode == key_pgup){
+            ertek+=100;
+       }
+    if(ev.keycode == key_pgdn){
+            ertek-=100;
+       }
 }

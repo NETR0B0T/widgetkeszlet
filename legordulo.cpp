@@ -8,7 +8,7 @@ using namespace genv;
 using namespace std;
 
 
-legordulo ::legordulo(int size_x, int size_y, int pos_x , int pos_y, std::vector<std::string> v, int shift, int kivalasztott):widget(size_x, size_y, pos_x, pos_y), v(v), shift(shift), kivalasztott(kivalasztott){};
+legordulo ::legordulo(int size_x, int size_y, int pos_x , int pos_y):widget(size_x, size_y, pos_x, pos_y), shift(0), kivalasztott(-1){};
 void legordulo :: rajzol(){
     gout << move_to(pos_x, pos_y) << color(255,255,255) << box(size_x,size_y)
          << color(0,0,0) << move_to(pos_x+3,pos_y+3) <<box(size_x-6,size_y-6)
@@ -18,7 +18,7 @@ void legordulo :: rajzol(){
             }
             for (unsigned int i=0; i<v.size(); i++){
                if(i<4){
-                gout <<move_to(pos_x+15+150,pos_y+15+i*((size_y-25)/4)+25); //szöveg helye
+                gout <<move_to(pos_x+size_x/3,pos_y+15+i*((size_y-25)/4)+25); //szöveg helye
                gout << color(255,255,255);
                     if(v.size()>4){             //csak akkor shiftelunk, ha van hova
                         if(i+shift == kivalasztott){gout << color(255,0,0);}
@@ -42,8 +42,27 @@ void legordulo :: set_shift(int a, int m_x, int m_y){
 
 }
 
-void legordulo :: set_string(string a){
+void legordulo :: push_string(string a){
+    if (a.size()>0)
     v.push_back(a);
+}
+
+void legordulo :: push_int(int a){
+    v.push_back(to_string(a));
+}
+
+string legordulo :: get_kivalasztott(){
+    return v[kivalasztott];
+}
+
+void legordulo :: erase_kivalasztott(){
+    if(v.size()>0 && kivalasztott !=-1)
+    v.erase(v.begin()+kivalasztott);
+    kivalasztott = -1;
+}
+
+bool legordulo :: ures(){
+    return v.size() > 0 ? 0 : 1;
 }
 
 void legordulo :: kattintas(int m_x, int m_y){

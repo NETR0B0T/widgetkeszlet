@@ -12,7 +12,6 @@ class widget {
  protected:
     int size_x, size_y, pos_x , pos_y;
  public:
- //widget(int x, int y): pos_x(x), pos_y(y){};
     widget(int size_x, int size_y, int pos_x , int pos_y);
  virtual void rajzol()=0;
 

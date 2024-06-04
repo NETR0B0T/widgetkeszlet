@@ -5,13 +5,13 @@
 
 class button : public widget {
 
-    int ertek;
+    std::string ertek;
 public:
-    void rajzol();
-    button(int size_x, int size_y, int pos_x , int pos_y, int ertek);
-        void event(genv::event ev);
-        std::function<void()>megynyom;
 
- //  void futtat_szambeiro(szambeiro a);
+    button(int size_x, int size_y, int pos_x , int pos_y);
+    void rajzol();
+    void event(genv::event ev);
+    std::function<void()>megnyom;
+    void set_string(std::string a);
 };
 #endif // BUTTON_H

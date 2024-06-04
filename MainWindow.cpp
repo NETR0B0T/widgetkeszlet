@@ -1,9 +1,11 @@
 #include "MainWindow.h"
 #include "widget.h"
+#include <iostream>
 using namespace genv;
 
 MainWindow::MainWindow(int XX, int YY){
     gout.open(XX,YY);
+    gout << font("LiberationSans-Regular.ttf",30);
 }
 void MainWindow::hozzaad(widget* w){
     widgets.push_back(w);
@@ -16,7 +18,7 @@ void MainWindow :: loop(){
                for(size_t i=0; i<widgets.size(); i++){
                    if(widgets[i]->active(ev.pos_x, ev.pos_y)){
                        index =i;
-                     //  cout << index;
+                       std::cout << index;
                    }
                }
            }

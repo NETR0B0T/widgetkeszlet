@@ -8,11 +8,11 @@ class szambeiro : public widget {
 
     int ertek;
 public:
-
+   // szambeiro(int size_x, int size_y, int pos_x , int pos_y);
+    szambeiro(int size_x, int size_y, int pos_x , int pos_y);
     void rajzol();
-    szambeiro(int size_x, int size_y, int pos_x , int pos_y, int ertek);
-        void event(genv::event ev);
+    void event(genv::event ev);
+    int get_int();
 
- //  void futtat_szambeiro(szambeiro a);
 };
 #endif // SZAMBEIRO_H
