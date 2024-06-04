@@ -8,7 +8,7 @@ class button : public widget {
     std::string ertek;
 public:
 
-    button(int size_x, int size_y, int pos_x , int pos_y);
+    button(int pos_x , int pos_y);
     void rajzol();
     void event(genv::event ev);
     std::function<void()>megnyom;

@@ -7,7 +7,7 @@
 using namespace genv;
 using namespace std;
 
-textedit::textedit(int size_x, int size_y, int pos_x , int pos_y):widget(size_x, size_y, pos_x, pos_y),szoveg(""){}
+textedit::textedit(int pos_x , int pos_y):widget(350,50, pos_x, pos_y),szoveg(""){}
 
 void textedit::rajzol(){
     gout << move_to(pos_x,pos_y) << color(255,255,255) << box(size_x, size_y) << move_to(pos_x+2,pos_y+2) << color(0,0,0) << box(size_x-4, size_y-4);

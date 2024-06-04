@@ -5,7 +5,8 @@
 using namespace genv;
 using namespace std;
 
-szambeiro ::szambeiro(int size_x, int size_y, int pos_x , int pos_y): widget(size_x, size_y, pos_x, pos_y), ertek(0){}
+szambeiro ::szambeiro(int pos_x , int pos_y): widget(100,50, pos_x, pos_y), ertek(0){}
+//szambeiro ::szambeiro(int size_x, int size_y, int pos_x , int pos_y): widget(size_x, size_y, pos_x, pos_y), ertek(0){}
 
 void szambeiro :: rajzol(){
     size_x= gout.twidth(to_string(ertek))+100;

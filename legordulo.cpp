@@ -8,7 +8,7 @@ using namespace genv;
 using namespace std;
 
 
-legordulo ::legordulo(int size_x, int size_y, int pos_x , int pos_y):widget(size_x, size_y, pos_x, pos_y), shift(0), kivalasztott(-1){};
+legordulo ::legordulo(int pos_x , int pos_y):widget(200,400, pos_x, pos_y), shift(0), kivalasztott(-1){};
 void legordulo :: rajzol(){
     gout << move_to(pos_x, pos_y) << color(255,255,255) << box(size_x,size_y)
          << color(0,0,0) << move_to(pos_x+3,pos_y+3) <<box(size_x-6,size_y-6)

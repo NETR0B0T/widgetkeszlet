@@ -11,7 +11,7 @@ protected:
     int shift=0;
     int kivalasztott;
 public:
-    legordulo(int size_x, int size_y, int pos_x , int pos_y);
+    legordulo(int pos_x , int pos_y);
     void rajzol() override;
     int get_shift();
     void set_shift(int a,int m_x, int m_y);

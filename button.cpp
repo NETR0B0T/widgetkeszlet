@@ -5,7 +5,7 @@
 using namespace genv;
 using namespace std;
 
-button::button(int size_x, int size_y, int pos_x , int pos_y): widget(size_x, size_y, pos_x, pos_y), ertek(){}
+button::button(int pos_x , int pos_y): widget(50, 50, pos_x, pos_y), ertek(){}
 void button::rajzol(){
     size_x= gout.twidth(ertek)+10;
 
