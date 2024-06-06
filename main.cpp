@@ -11,50 +11,60 @@
 #include "textedit.h"
 #include "checkbox.h"
 #include "button.h"
+#include "screen.h"
+#include <map>
 using namespace genv;
 using namespace std;
 
 
 int main(){
-    MainWindow *window = new MainWindow(600, 600);
+    MainWindow *window = new MainWindow(800, 600);
 
-    legordulo* l = new legordulo(10, 10);
-    window->hozzaad(l);
+    legordulo* nevsor = new legordulo(10,10);
+    window->hozzaad(nevsor);
 
-    legordulo* l2 = new legordulo(350, 10);
-    window->hozzaad(l2);
+    textedit* ujnev =new textedit(210,30);
+    window->hozzaad(ujnev);
 
-    textedit* t = new textedit(10, 450);
-    window->hozzaad(t);
+    button* ujadd =new button(210, 60);
+    ujadd->set_string("Add versenyzo");
+    ujadd->megnyom=[&ujnev, &nevsor, &window](){
+        nevsor->push_string(ujnev->get_string());
+        ujnev->set_string("");
 
-    button* b = new button(400, 450);
-    b->set_string("szovegbol");
-    window->hozzaad(b);
-    b->megnyom = [&l, &t](){l->push_string(t->get_string());};
+        if(nevsor->list_size()==8){
 
-    szambeiro * s = new szambeiro(10, 510);
-    window->hozzaad(s);
+            vector<pair<textedit*, button*>> semi; //masodik fordulo
+            for(int i=0; i<4; i++){
+                textedit* q1 = new textedit(280, 160+30*i);
+                button* b1 = new button(490,160+30*i);
+                b1->set_string("->");
+                semi.push_back(make_pair(q1,b1));
+                window->hozzaad(q1);
+                window->hozzaad(b1);
+            }
 
-    button* b2 = new button(400, 510);
-    window->hozzaad(b2);
-    b2->set_string("szambol");
-    b2->megnyom =[&s, &l](){l->push_string(to_string(s->get_int()));};
+            vector<pair<textedit*, button*>> quart; //elso fordulo
+            for(int i=0; i<8; i++){
+                textedit* q1 = new textedit(20, 160+30*i);
+                button* b1 = new button(230,160+30*i);
+                b1->set_string("->");
+                b1->megnyom=[&q1,&semi,&i](){
+                   // semi[i].first->set_string(q1->get_string());
+                    cout<<endl<<i<<endl;
+                };
+                quart.push_back(make_pair(q1,b1));
+                window->hozzaad(q1);
+                window->hozzaad(b1);
 
-    button* b3 = new button(250, 100);
-    window->hozzaad(b3);
-    b3->set_string("erase");
-    b3->megnyom =[&l](){   //törlő gomb
-        l->erase_kivalasztott();
+            }
+            for(int i=0 ;i<nevsor->list_size(); i++){
+                quart[i].first->set_string(nevsor->get_indexed(i));
+            }
+        };
+
     };
-
-    button* b4 = new button(250, 300);
-    window->hozzaad(b4);
-    b4->set_string("->");
-    b4->megnyom =[&l, &l2](){   //atvivo
-        if(l->ures()==0){
-        l2->push_string(l->get_kivalasztott());}
-        l->erase_kivalasztott();
-    };
+    window->hozzaad(ujadd);
 
     window->loop();
     delete window;

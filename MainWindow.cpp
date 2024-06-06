@@ -5,7 +5,6 @@ using namespace genv;
 
 MainWindow::MainWindow(int XX, int YY){
     gout.open(XX,YY);
-    gout << font("LiberationSans-Regular.ttf",30);
 }
 void MainWindow::hozzaad(widget* w){
     widgets.push_back(w);

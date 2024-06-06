@@ -13,14 +13,14 @@ protected:
 public:
     legordulo(int pos_x , int pos_y);
     void rajzol() override;
-    int get_shift();
+    std::string get_indexed(int i);
     void set_shift(int a,int m_x, int m_y);
     void push_string(std::string a);
     void push_int(int a);
     void kattintas(int m_x, int m_y);
     void event(genv::event ev) override;
     void erase_kivalasztott();
-    bool ures();
+    int list_size();
     std::string get_kivalasztott();
 
 };

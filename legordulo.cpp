@@ -8,17 +8,17 @@ using namespace genv;
 using namespace std;
 
 
-legordulo ::legordulo(int pos_x , int pos_y):widget(200,400, pos_x, pos_y), shift(0), kivalasztott(-1){};
+legordulo ::legordulo(int pos_x , int pos_y):widget(200,150, pos_x, pos_y), shift(0), kivalasztott(-1){};
 void legordulo :: rajzol(){
-    gout << move_to(pos_x, pos_y) << color(255,255,255) << box(size_x,size_y)
-         << color(0,0,0) << move_to(pos_x+3,pos_y+3) <<box(size_x-6,size_y-6)
+    gout //<< move_to(pos_x, pos_y) << color(255,255,255) << box(size_x,size_y)
+         //<< color(0,0,0) << move_to(pos_x+3,pos_y+3) <<box(size_x-6,size_y-6)
          << color(255,255,255) << move_to(pos_x+10,pos_y+10) << box(size_x-20, size_y-20);
             for(int i=0; i<4 ; i++){
-                gout << color(0,0,0) << move_to(pos_x+15,pos_y+15+i*((size_y-25)/4)) << box(size_x-30, (size_y-30)/4);
+                gout << color(100,100,100) << move_to(pos_x+15,pos_y+15+i*((size_y-25)/4)) << box(size_x-30, (size_y-30)/4);
             }
             for (unsigned int i=0; i<v.size(); i++){
                if(i<4){
-                gout <<move_to(pos_x+size_x/3,pos_y+15+i*((size_y-25)/4)+25); //szöveg helye
+                gout <<move_to(pos_x+size_x/3,pos_y+15+i*((size_y-25)/4)+5); //szöveg helye
                gout << color(255,255,255);
                     if(v.size()>4){             //csak akkor shiftelunk, ha van hova
                         if(i+shift == kivalasztott){gout << color(255,0,0);}
@@ -30,8 +30,8 @@ void legordulo :: rajzol(){
             }
          //gout<< refresh;
 }
-int legordulo :: get_shift(){
-    return shift;
+string legordulo :: get_indexed(int i){
+    return v[i];
 }
 
 void legordulo :: set_shift(int a, int m_x, int m_y){
@@ -61,8 +61,8 @@ void legordulo :: erase_kivalasztott(){
     kivalasztott = -1;
 }
 
-bool legordulo :: ures(){
-    return v.size() > 0 ? 0 : 1;
+int legordulo :: list_size(){
+    return v.size();
 }
 
 void legordulo :: kattintas(int m_x, int m_y){
@@ -99,14 +99,11 @@ void legordulo :: event(genv::event ev){
         m_x= ev.pos_x;
         m_y =ev.pos_y;
         legordulo::set_shift(1, m_x, m_y);
-
-        cout << get_shift()<< endl;
     }
     if(ev.button == btn_wheeldown){
         m_x= ev.pos_x;
         m_y =ev.pos_y;
         legordulo::set_shift(-1, m_x, m_y);
-        cout << get_shift()<< endl;
         rajzol();
 
     }

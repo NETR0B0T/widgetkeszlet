@@ -5,11 +5,12 @@
 using namespace genv;
 using namespace std;
 
-button::button(int pos_x , int pos_y): widget(50, 50, pos_x, pos_y), ertek(){}
+button::button(int pos_x , int pos_y): widget(30, 30, pos_x, pos_y), ertek("<title>"), megnyom([](){}){}
 void button::rajzol(){
+    gout << font("LiberationSans-Regular.ttf",20);
     size_x= gout.twidth(ertek)+10;
 
-    gout << move_to(pos_x,pos_y) << color(255,255,255) << box(size_x, size_y) << move_to(pos_x+2,pos_y+2) << color(0,0,0) << box(size_x-4, size_y-4)
+    gout << move_to(pos_x,pos_y) << color(255,255,255) << box(size_x, size_y) << move_to(pos_x+2,pos_y+2) << color(100,100,100) << box(size_x-4, size_y-4)
          << color(255,255,255) << move_to(pos_x+6,pos_y+5) << text(ertek);
 }
 
