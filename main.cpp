@@ -19,8 +19,34 @@ using namespace std;
 
 int main(){
     MainWindow *window = new MainWindow(800, 600);
+                                                //partlistas
+    vector<pair<string, int>>v;
+    textedit* t1 =new textedit(50,10);
+    window->hozzaad(t1);
 
-    legordulo* nevsor = new legordulo(10,10);
+    szambeiro* s1 =new szambeiro(50,60);
+    window->hozzaad(s1);
+
+    legordulo* l1 =new legordulo(300,50);
+    window->hozzaad(l1);
+
+    screen* sc =new screen(50,400);
+    window->hozzaad(sc);
+
+    button * b1 =new button(50,200);
+    b1->megnyom=[&t1,&s1,&l1,&v,&sc](){
+        v.push_back(make_pair(t1->get_string(),s1->get_int()));
+        l1->push_string(t1->get_string()+'('+to_string(s1->get_int())+')');
+        pair<string, int> leg=v[0];
+        for(pair<string, int> &i : v){
+            if(i.second>leg.second){leg=i;}
+        }
+        sc->set_string("A legnepszerubb part: "+ leg.first +'('+to_string(leg.second)+')');
+    };
+    b1->set_string("hozzaad");
+    window->hozzaad(b1);
+
+/*    legordulo* nevsor = new legordulo(10,10);   //donto
     window->hozzaad(nevsor);
 
     textedit* ujnev =new textedit(210,30);
@@ -47,25 +73,24 @@ int main(){
             vector<pair<textedit*, button*>> quart; //elso fordulo
             for(int i=0; i<8; i++){
                 textedit* q1 = new textedit(20, 160+30*i);
+                q1->set_string(nevsor->get_indexed(i));
                 button* b1 = new button(230,160+30*i);
                 b1->set_string("->");
-                b1->megnyom=[&q1,&semi,&i](){
-                   // semi[i].first->set_string(q1->get_string());
-                    cout<<endl<<i<<endl;
-                };
                 quart.push_back(make_pair(q1,b1));
                 window->hozzaad(q1);
                 window->hozzaad(b1);
-
             }
-            for(int i=0 ;i<nevsor->list_size(); i++){
-                quart[i].first->set_string(nevsor->get_indexed(i));
+           for(int i=0 ;i<nevsor->list_size(); i++){
+               quart[i].second->megnyom=[semi,i,quart](){
+                    semi[0].first->set_string(quart[i].first->get_string());
+                   cout << '(' << i <<')'<< endl;
+                };
             }
         };
 
     };
     window->hozzaad(ujadd);
-
+*/
     window->loop();
     delete window;
 
