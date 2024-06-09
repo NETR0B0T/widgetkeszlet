@@ -22,6 +22,7 @@ public:
     void erase_kivalasztott();
     int list_size();
     std::string get_kivalasztott();
+    int get_kivalasztott_index();
 
 };
 #endif // LEGORDULO_H

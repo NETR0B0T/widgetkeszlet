@@ -58,11 +58,15 @@ string legordulo :: get_kivalasztott(){
 void legordulo :: erase_kivalasztott(){
     if(v.size()>0 && kivalasztott !=-1)
     v.erase(v.begin()+kivalasztott);
-    kivalasztott = -1;
+    kivalasztott = 0;
 }
 
 int legordulo :: list_size(){
     return v.size();
+}
+
+int legordulo :: get_kivalasztott_index(){
+    return kivalasztott;
 }
 
 void legordulo :: kattintas(int m_x, int m_y){

@@ -46,6 +46,18 @@ int main(){
     b1->set_string("hozzaad");
     window->hozzaad(b1);
 
+    button * b2 =new button(50,260);
+    b2->megnyom=[&l1, &v, &sc](){
+        v.erase(v.begin()+l1->get_kivalasztott_index());
+        l1->erase_kivalasztott();
+        pair<string, int> leg=v[0];
+        for(pair<string, int> &i : v){
+            if(i.second>leg.second){leg=i;}
+        }
+        sc->set_string("A legnepszerubb part: "+ leg.first +'('+to_string(leg.second)+')');
+    };
+    window->hozzaad(b2);
+
 /*    legordulo* nevsor = new legordulo(10,10);   //donto
     window->hozzaad(nevsor);
 
