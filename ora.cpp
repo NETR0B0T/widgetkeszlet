@@ -8,16 +8,16 @@
 using namespace genv;
 using namespace std;
 
-ora::ora(int pos_x, int pos_y):widget(200,200, pos_x, pos_y), hour(12), min(30), hour_deg(0), min_deg(0){};
+ora::ora(int pos_x, int pos_y):widget(200,200, pos_x, pos_y), hour(0), min(0), hour_deg(0), min_deg(0){};
 
 void ora :: rajzol(){
 
+    min_deg=(min/60)*2*pi-pi/2;
 
-    min_deg= ((min/60)*(2*pi))-pi/2;
 
     if (hour<=12){
-    hour_deg=hour*(2*pi)/12-(pi/2);}
-    else{hour_deg=(hour-12)*(2*pi)/12+min*(pi/6)-pi/2;}
+    hour_deg=hour*(2*pi)/12-(pi/2)+min/60*pi/6;}
+    else{hour_deg=(hour-12)*(2*pi)/12-pi/2;}
 
     gout << move_to(pos_x, pos_y);
         int r= size_x/2;
@@ -33,15 +33,15 @@ void ora :: rajzol(){
 float x = cos(hour_deg)*50;
 float y = sin(hour_deg)*50;
 
-float xm = cos(min_deg)*100;
-float ym = sin(min_deg)*100;
-
-
 gout << move_to(pos_x+size_x/2,(pos_y+size_y/2))<< line_to(x+(pos_x+size_x/2),y+(pos_y+size_y/2)) << color(255,0,0) << box(5,5)     //ora
 <<color(0,255,0) << move_to(pos_x+size_x/2,(pos_y+size_y/2))<< box(2,2);
 
-gout << move_to(pos_x+size_x/2,(pos_y+size_y/2))<< line_to(xm+(pos_x+size_x/2),ym+(pos_y+size_y/2)) << color(0,255,0) << box(5,5)    // perc
-<<color(0,255,0) << move_to(pos_x+size_x/2,(pos_y+size_y/2))<< box(2,2);
+ x = cos(min_deg)*100;
+ y = sin(min_deg)*100;
+
+ gout << move_to(pos_x+size_x/2,(pos_y+size_y/2))<< line_to(x+(pos_x+size_x/2),y+(pos_y+size_y/2)) << color(255,0,0) << box(5,5)     //ora
+      <<color(0,255,0) << move_to(pos_x+size_x/2,(pos_y+size_y/2))<< box(2,2);
+
 }
 
 void ora:: set_time(double a, double b){

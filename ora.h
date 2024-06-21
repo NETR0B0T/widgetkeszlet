@@ -5,8 +5,8 @@
 
 class ora : public widget{
 protected:
-    int hour;
-    int min;
+    float hour;
+    float min;
     float hour_deg;
     float min_deg;
     double pi = 2 * acos(0.0);
