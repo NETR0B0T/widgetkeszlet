@@ -28,11 +28,21 @@ void ora :: rajzol(){
             }
         }
     }
+    float szamdeg=-pi/2;
+    float x;
+    float y;
+
+    for(int i =0; i<12; i++){
+        x = cos(szamdeg)*82;
+        y = sin(szamdeg)*82;
+        gout << move_to(x+(pos_x+size_x/2)-6,y+(pos_y+size_y/2)-10) << color(255,255,255) <<text(to_string(12-i));
+        szamdeg-=pi/6;
+    }
 
 
 //mutatok
-float x = cos(hour_deg)*50;
-float y = sin(hour_deg)*50;
+ x = cos(hour_deg)*50;
+ y = sin(hour_deg)*50;
 
 gout << move_to(pos_x+size_x/2,(pos_y+size_y/2))<< line_to(x+(pos_x+size_x/2),y+(pos_y+size_y/2)) << box(2,2);     //ora;
 
