@@ -12,6 +12,7 @@
 #include "checkbox.h"
 #include "button.h"
 #include "screen.h"
+#include "ora.h"
 #include <map>
 using namespace genv;
 using namespace std;
@@ -19,7 +20,23 @@ using namespace std;
 
 int main(){
     MainWindow *window = new MainWindow(800, 600);
-                                                //partlistas
+
+    ora* o = new ora(500, 50);
+    window->hozzaad(o);
+
+    szambeiro* s = new szambeiro(300,100);
+    window->hozzaad(s);
+
+    szambeiro* s2 = new szambeiro(300,170);
+    window->hozzaad(s2);
+
+    button* b = new button(300,50);
+    b->megnyom=[&s,&s2, &o](){
+        o->set_time(s->get_int(),s2->get_int());
+    };
+    b->set_string("set time");
+    window->hozzaad(b);
+/*                                                //partlistas
     vector<pair<string, int>>v;
     textedit* t1 =new textedit(50,10);
     window->hozzaad(t1);

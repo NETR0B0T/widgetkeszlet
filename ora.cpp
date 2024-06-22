@@ -29,19 +29,17 @@ void ora :: rajzol(){
         }
     }
 
+
 //mutatok
 float x = cos(hour_deg)*50;
 float y = sin(hour_deg)*50;
 
-gout << move_to(pos_x+size_x/2,(pos_y+size_y/2))<< line_to(x+(pos_x+size_x/2),y+(pos_y+size_y/2)) << color(255,0,0) << box(5,5)     //ora
-<<color(0,255,0) << move_to(pos_x+size_x/2,(pos_y+size_y/2))<< box(2,2);
+gout << move_to(pos_x+size_x/2,(pos_y+size_y/2))<< line_to(x+(pos_x+size_x/2),y+(pos_y+size_y/2)) << box(2,2);     //ora;
 
  x = cos(min_deg)*100;
  y = sin(min_deg)*100;
 
- gout << move_to(pos_x+size_x/2,(pos_y+size_y/2))<< line_to(x+(pos_x+size_x/2),y+(pos_y+size_y/2)) << color(255,0,0) << box(5,5)     //ora
-      <<color(0,255,0) << move_to(pos_x+size_x/2,(pos_y+size_y/2))<< box(2,2);
-
+ gout << move_to(pos_x+size_x/2,(pos_y+size_y/2))<< line_to(x+(pos_x+size_x/2),y+(pos_y+size_y/2)) << box(2,2);     //ora;
 }
 
 void ora:: set_time(double a, double b){
