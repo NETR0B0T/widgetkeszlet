@@ -11,6 +11,7 @@ void MainWindow::hozzaad(widget* w){
 }
 void MainWindow :: loop(){
     event ev;
+    gin.timer(1000);
     int index =-1;
        while(gin >> ev && ev.keycode != key_escape){
            if(ev.type==ev_mouse && ev.button == btn_left){

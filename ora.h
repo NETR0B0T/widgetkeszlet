@@ -9,6 +9,8 @@ protected:
     float min;
     float hour_deg;
     float min_deg;
+    float sec;
+    float sec_deg;
     double pi = 2 * acos(0.0);
 public:
     ora(int pos_x, int pos_y);
