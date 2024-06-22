@@ -28,9 +28,47 @@ void ora :: rajzol(){
             }
         }
     }
-    float szamdeg=-pi/2;
+
+    float linedeg=-pi/2;    //beosztas
     float x;
     float y;
+
+    for(int i =0; i<60; i++){
+        x = cos(linedeg)*100;
+        y = sin(linedeg)*100;
+        gout << move_to(pos_x+size_x/2,(pos_y+size_y/2))<< line_to(x+(pos_x+size_x/2),y+(pos_y+size_y/2)) << color(255,255,255);
+        linedeg-=pi/30;
+    }
+
+    gout << move_to(pos_x, pos_y); //beosztas takaro
+    r= size_x/2-5;
+    for(int y=0; y<= size_y; y++){for(int x=0; x<= size_x; x++){
+            if((((r-x)*(r-x)+(r-y)*(r-y))<=r*r)){
+                gout << move_to(pos_x+x+5,pos_y+y+5) << color(100,100,100) << dot;}
+        }
+    }
+
+    //secondary beosztas
+
+    linedeg=-pi/2;
+
+    for(int i =0; i<=12; i++){
+        x = cos(linedeg)*100;
+        y = sin(linedeg)*100;
+        gout << move_to(pos_x+size_x/2,(pos_y+size_y/2))<< line_to(x+(pos_x+size_x/2),y+(pos_y+size_y/2)) << color(255,255,255);
+        linedeg-=pi/6;
+    }
+
+    //secondary beosztas takaro
+
+    r= size_x/2-10;
+    for(int y=0; y<= size_y; y++){for(int x=0; x<= size_x; x++){
+            if((((r-x)*(r-x)+(r-y)*(r-y))<=r*r)){
+                gout << move_to(pos_x+x+10,pos_y+y+10) << color(100,100,100) << dot;}
+        }
+    }
+
+    float szamdeg=-pi/2;    //szamlap
 
     for(int i =0; i<12; i++){
         x = cos(szamdeg)*82;
