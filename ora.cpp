@@ -20,7 +20,7 @@ void ora :: rajzol(){
 
     if (hour<=12){
     hour_deg=hour*(2*pi)/12-(pi/2)+min/60*pi/6;}
-    else{hour_deg=(hour-12)*(2*pi)/12-pi/2;}
+    else{hour_deg=(hour-12)*(2*pi)/12-pi/2+min/60*pi/6;}
 
     gout << move_to(pos_x, pos_y);
         int r= size_x/2;
