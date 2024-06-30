@@ -11,6 +11,7 @@ public:
     void rajzol();
     void set_string(std::string a);
     void add_string(std::string a);
+    std::string get_string();
     void event(genv::event ev);
 };
 

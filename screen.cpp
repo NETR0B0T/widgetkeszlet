@@ -25,4 +25,8 @@ void screen:: add_string(string a){
     szoveg += a;}
 }
 
+string screen:: get_string(){
+    return szoveg;
+}
+
 void screen :: event(genv::event ev){}
